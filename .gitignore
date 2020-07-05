@@ -36,9 +36,6 @@
 **/android/local.properties
 **/android/key.properties
 
-# Ios related
-**/ios/Runner/GoogleService-Info.plist
-
 # Web related
 lib/generated_plugin_registrant.dart
 
