@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
-import 'package:flutter_ecommerce/core/service/user_service.dart';
+import 'package:flutter_ecommerce/core/provider/user_provider.dart';
+import 'package:flutter_ecommerce/ui/shared/card/product_card.dart';
+import 'package:flutter_ecommerce/ui/widgets/home_header.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const route_name = "HomeScreen";
@@ -49,11 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    UserService.shared.getUserData();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      var userProvider = context.read<UserProvider>();
+      userProvider.fetchUserData();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -93,52 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: productData.length,
                     itemBuilder: (context, index) {
                       Product product = productData[index];
-                      return Container(
-                        height: 200,
-                        width: 150,
-                        child: Card(
-                          child: Container(
-                            padding: K.size.cardProductPadding,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.only(bottom: 5),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.orangeAccent,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Image.network(
-                                    product.imageUrl,
-                                    height: 120,
-                                    width: double.infinity,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 5),
-                                  child: Text(
-                                    product.name,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  product.price.toString(),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                      return ProductCard(product: product);
                     },
                   ),
                 ),
@@ -147,50 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       )),
-    );
-  }
-}
-
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          "Good afternoon,",
-        ),
-        Text(
-          "Albert",
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-          ),
-        ),
-        SizedBox(
-          height: K.size.groupMargin,
-        ),
-        TextField(
-          onTap: () {
-            print("Navigate to search screen");
-          },
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-            ),
-            hintText: "Search product",
-            contentPadding: EdgeInsets.zero,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: K.colors.primary),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
