@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/screens/auth/home/home.dart';
-import 'package:flutter_ecommerce/screens/registration/login.dart';
-import 'package:flutter_ecommerce/service/auth_service.dart';
+import 'package:flutter_ecommerce/core/service/auth_service.dart';
+import 'package:flutter_ecommerce/ui/views/home/home.dart';
+import 'package:flutter_ecommerce/ui/views/registration/login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,7 +9,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final authService = AuthService();
   @override
   void initState() {
     super.initState();

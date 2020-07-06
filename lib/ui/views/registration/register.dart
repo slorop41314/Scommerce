@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/components/input.dart';
-import 'package:flutter_ecommerce/service/auth_service.dart';
+import 'package:flutter_ecommerce/ui/shared/input/input.dart';
+import 'package:flutter_ecommerce/core/service/auth_service.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -13,18 +13,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _email = "";
   String _password = "";
   String _fullname = "";
-  int _phoneNum = 0;
+  String _phoneNum = "";
 
   void _onTapRegister() async {
-    if (_email == "" || _password == "" || _fullname == "" || _phoneNum == 0) {
+    if (_email == "" || _password == "" || _fullname == "" || _phoneNum == "") {
+      print({_email, _password, _fullname, _phoneNum});
       print("Register didnt complete");
     } else {
-      AuthService.shared.registerUserByEmail(
+      final res = await AuthService.shared.registerUserByEmail(
         _email,
         _password,
         _fullname,
         _phoneNum,
       );
+      if (res.isSuccess) {
+        Navigator.of(context).pushReplacementNamed("/");
+      } else {
+        print(res.message);
+      }
     }
   }
 

@@ -5,9 +5,14 @@ class K {
   static CustomSizes size = CustomSizes();
 }
 
+class DBCollection {
+  static String userCollection = "users";
+}
+
 class CustomColors {
   Color primary = Colors.lightBlue;
 }
+
 
 class CustomSizes {
   final bodyPadding = EdgeInsets.all(20);

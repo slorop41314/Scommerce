@@ -1,16 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_ecommerce/model/response_model.dart';
+import 'package:flutter_ecommerce/core/model/responseModel.dart';
+import 'package:flutter_ecommerce/utils/constant.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   static final shared = AuthService();
   FirebaseAuth _auth = FirebaseAuth.instance;
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
+  Firestore _firestore = Firestore.instance;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<String> signInWithGoogle() async {
     final GoogleSignInAccount googleSignInAccount =
@@ -49,18 +47,38 @@ class AuthService {
     }
   }
 
-  void registerUserByEmail(
+  Future<Response> registerUserByEmail(
     String email,
     String password,
     String fullname,
-    int phone_number,
+    String phoneNumber,
   ) async {
+    Response response = Response(
+      data: null,
+      isSuccess: false,
+      message: "",
+    );
     try {
       AuthResult user = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      print(user.user.uid);
+      final data = {
+        "email": email,
+        "fullname": fullname,
+        "phone_number": phoneNumber
+      };
+      await _firestore
+          .collection(DBCollection.userCollection)
+          .document(user.user.uid)
+          .setData(data);
+      response = Response(
+        data: data,
+        isSuccess: true,
+        message: "Success register user",
+      );
+      return response;
     } catch (err) {
       print(err);
+      return response;
     }
   }
 
