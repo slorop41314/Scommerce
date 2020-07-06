@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/ui/shared/input/input.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
-import 'package:flutter_ecommerce/ui/views/registration/register.dart';
+import 'package:flutter_ecommerce/ui/views/registration/register_screen.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
-import 'package:flutter_ecommerce/ui/views/home/home.dart';
-import 'package:flutter_ecommerce/ui/views/registration/login.dart';
+import 'package:flutter_ecommerce/ui/views/bottom_tab.dart';
+import 'package:flutter_ecommerce/ui/views/registration/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   startTime() async {
     final isUserLoggedIn = await AuthService.shared.checkCurrentUser();
     if (isUserLoggedIn) {
-      Navigator.of(context).pushReplacementNamed(HomeScreen.route_name);
+      Navigator.of(context).pushReplacementNamed(BottomNavBar.route_name);
     } else {
       Navigator.of(context).pushReplacementNamed(LoginScreen.route_name);
     }
