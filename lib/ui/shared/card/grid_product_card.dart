@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({
+class GridProductCard extends StatelessWidget {
+  const GridProductCard({
     Key key,
     @required this.product,
   }) : super(key: key);
@@ -13,8 +13,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 150,
+      height: double.infinity,
       child: Card(
         child: Container(
           padding: K.size.cardProductPadding,
@@ -25,7 +24,7 @@ class ProductCard extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 5),
                 child: Image.network(
                   product.imageUrl,
-                  height: 120,
+                  height: 100,
                   width: double.infinity,
                 ),
               ),

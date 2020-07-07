@@ -1,6 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/ui/views/cart_screen.dart';
 import 'package:flutter_ecommerce/ui/views/home/home_screen.dart';
+import 'package:flutter_ecommerce/ui/views/notification_screen.dart';
 import 'package:flutter_ecommerce/ui/views/profile_screen.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
 
@@ -14,10 +16,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
 
-  final screenData = [
+  final List<Widget> screenData = [
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    CartScreen(),
+    NotificationScreen(),
     ProfileScreen(),
   ];
   @override
@@ -60,7 +62,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           });
         },
       ),
-      body: screenData[_page],
+      body: IndexedStack(
+        index: _page,
+        children: screenData,
+      ),
     );
   }
 }
