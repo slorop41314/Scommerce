@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
+import 'package:flutter_ecommerce/core/provider/products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/ui/shared/card/grid_product_card.dart';
 import 'package:flutter_ecommerce/ui/shared/card/product_card.dart';
@@ -101,8 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      var userProvider = context.read<UserProvider>();
+      final userProvider = context.read<UserProvider>();
+      final productsProvider = context.read<ProductsProvider>();
       userProvider.fetchUserData();
+      productsProvider.fetchData();
     });
   }
 

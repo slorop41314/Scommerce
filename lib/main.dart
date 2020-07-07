@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/core/provider/products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/ui/theme.dart';
 import 'package:flutter_ecommerce/ui/views/bottom_tab.dart';
@@ -17,6 +18,9 @@ void main() {
       providers: [
         ChangeNotifierProvider.value(
           value: UserProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ProductsProvider(),
         ),
       ],
       child: MyApp(),

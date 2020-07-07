@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
+import 'package:flutter_ecommerce/core/service/product_service.dart';
 
 class ProductsProvider with ChangeNotifier {
-  Product _productData;
+  final ProductService _productService = ProductService();
+  List<Product> _productData;
   bool _error = false;
   bool _loading = true;
 
-  Product get data {
+  List<Product> get data {
     return _productData;
   }
 
@@ -18,10 +20,10 @@ class ProductsProvider with ChangeNotifier {
     return _error;
   }
 
-  void fetchUserData() async {
+  void fetchData() async {
     _error = false;
     _loading = false;
-    // _productData = await userService.getUserData();
+    _productData = await _productService.getProductsData();
     notifyListeners();
   }
 }

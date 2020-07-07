@@ -6,6 +6,7 @@ class K {
 
 class DBCollection {
   static String userCollection = "users";
+  static String productCollection = "products";
 }
 
 Color kColorPrimary = Colors.lightBlue;
