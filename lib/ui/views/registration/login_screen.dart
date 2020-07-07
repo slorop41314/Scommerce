@@ -60,10 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   "Welcome Back",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 SizedBox(
                   height: K.size.contentGap,
@@ -107,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    color: K.colors.primary,
+                    color: kColorPrimary,
                     disabledColor: Colors.grey,
                   ),
                 ),

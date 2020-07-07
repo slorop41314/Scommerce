@@ -60,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -84,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         "Lihat semua",
                         style: TextStyle(
-                          color: K.colors.primary,
+                          color: kColorPrimary,
                         ),
                       ),
                     )

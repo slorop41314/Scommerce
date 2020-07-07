@@ -52,10 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Text(
                   "Register",
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 SizedBox(
                   height: K.size.contentGap,
@@ -126,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    color: K.colors.primary,
+                    color: kColorPrimary,
                     disabledColor: Colors.grey,
                   ),
                 ),

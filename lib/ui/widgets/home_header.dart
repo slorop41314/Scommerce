@@ -24,10 +24,7 @@ class HomeHeader extends StatelessWidget {
                 : userProvider.error
                     ? "Error get user"
                     : userProvider.userData.fullname,
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              fontSize: 20,
-            ),
+            style: Theme.of(context).textTheme.headline1,
           ),
         ),
         SizedBox(

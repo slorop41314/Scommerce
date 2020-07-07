@@ -31,27 +31,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
           Icon(
             Icons.home,
             size: 30,
-            color: _page == 0 ? K.colors.primary : Colors.grey,
+            color: _page == 0 ? kColorPrimary : Colors.grey,
           ),
           Icon(
             Icons.shopping_cart,
             size: 30,
-            color: _page == 1 ? K.colors.primary : Colors.grey,
+            color: _page == 1 ? kColorPrimary : Colors.grey,
           ),
           Icon(
             Icons.notifications,
             size: 30,
-            color: _page == 2 ? K.colors.primary : Colors.grey,
+            color: _page == 2 ? kColorPrimary : Colors.grey,
           ),
           Icon(
             Icons.person,
             size: 30,
-            color: _page == 3 ? K.colors.primary : Colors.grey,
+            color: _page == 3 ? kColorPrimary : Colors.grey,
           ),
         ],
         color: Colors.white,
         buttonBackgroundColor: Colors.white,
-        backgroundColor: K.colors.primary,
+        backgroundColor: kColorPrimary,
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 400),
         onTap: (index) {

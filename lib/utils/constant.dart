@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class K {
-  static CustomColors colors = CustomColors();
   static CustomSizes size = CustomSizes();
 }
 
@@ -9,9 +8,7 @@ class DBCollection {
   static String userCollection = "users";
 }
 
-class CustomColors {
-  Color primary = Colors.lightBlue;
-}
+Color kColorPrimary = Colors.lightBlue;
 
 class CustomSizes {
   final bodyPadding = EdgeInsets.all(20);

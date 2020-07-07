@@ -41,17 +41,12 @@ class ProductCard extends StatelessWidget {
                   product.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context).textTheme.caption,
                 ),
               ),
               Text(
                 product.price.toString(),
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ],
           ),

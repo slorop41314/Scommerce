@@ -27,12 +27,12 @@ class CustomInput extends StatelessWidget {
         prefixIcon: this.prefixIcon,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: K.colors.primary,
+            color: kColorPrimary,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: K.colors.primary,
+            color: kColorPrimary,
           ),
         ),
         labelText: this.label,

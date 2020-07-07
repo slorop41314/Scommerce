@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
+import 'package:flutter_ecommerce/ui/theme.dart';
 import 'package:flutter_ecommerce/ui/views/bottom_tab.dart';
 import 'package:flutter_ecommerce/ui/views/home/home_screen.dart';
 import 'package:flutter_ecommerce/ui/views/registration/login_screen.dart';
@@ -29,11 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Scommerce',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme: AppBarTheme(color: Colors.white),
-      ),
+      theme: appTheme(),
       routes: {
         "/": (context) => SplashScreen(),
 
