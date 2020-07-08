@@ -26,6 +26,7 @@ class GridProductCard extends StatelessWidget {
                   product.imageUrl,
                   height: 100,
                   width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
               Padding(

@@ -17,4 +17,18 @@ class ProductService {
     }
     return productsData;
   }
+
+  Future<List<Product>> getBestsellerData() async {
+    List<Product> productsData = [];
+    QuerySnapshot querySnapshot = await _firestore
+        .collection(DBCollection.productCollection)
+        .orderBy("soldCount", descending: true)
+        .limit(5)
+        .getDocuments();
+    for (var product in querySnapshot.documents) {
+      var prod = Product.fromJson(product.data);
+      productsData.add(prod);
+    }
+    return productsData;
+  }
 }

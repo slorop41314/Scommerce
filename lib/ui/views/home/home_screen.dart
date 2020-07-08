@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
+import 'package:flutter_ecommerce/core/provider/bestseller_products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/ui/shared/card/grid_product_card.dart';
@@ -104,8 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final userProvider = context.read<UserProvider>();
       final productsProvider = context.read<ProductsProvider>();
+      final bestsellerProvider = context.read<BestSellerProductsProvider>();
       userProvider.fetchUserData();
       productsProvider.fetchData();
+      bestsellerProvider.fetchData();
     });
   }
 
@@ -150,13 +153,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     top: 10,
                   ),
                   height: 200,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: productData.length,
-                    itemBuilder: (context, index) {
-                      Product product = productData[index];
-                      return ProductCard(product: product);
-                    },
+                  child: Consumer<BestSellerProductsProvider>(
+                    builder: (ctx, bestsellerProvider, _) => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: bestsellerProvider.data.length,
+                      itemBuilder: (context, index) {
+                        Product product = bestsellerProvider.data[index];
+                        return ProductCard(product: product);
+                      },
+                    ),
                   ),
                 ),
                 Padding(
@@ -166,19 +171,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
-                GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: productData.length,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: 0.9,
-                  ),
-                  itemBuilder: (context, index) {
-                    Product product = productData[index];
-                    return GridProductCard(
-                      product: product,
+                Consumer<ProductsProvider>(
+                  builder: (ctx, productProvider, _) {
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: productProvider.data.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        Product product = productProvider.data[index];
+                        return GridProductCard(
+                          product: product,
+                        );
+                      },
                     );
                   },
                 ),

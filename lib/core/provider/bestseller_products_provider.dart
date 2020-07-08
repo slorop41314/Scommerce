@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
 import 'package:flutter_ecommerce/core/service/product_service.dart';
 
-class ProductsProvider with ChangeNotifier {
+class BestSellerProductsProvider with ChangeNotifier {
   final ProductService _productService = ProductService();
   List<Product> _productData = [];
   bool _error = false;
@@ -23,7 +23,7 @@ class ProductsProvider with ChangeNotifier {
   void fetchData() async {
     _error = false;
     _loading = false;
-    _productData = await _productService.getProductsData();
+    _productData = await _productService.getBestsellerData();
     notifyListeners();
   }
 }

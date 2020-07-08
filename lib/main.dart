@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/core/provider/bestseller_products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/products_provider.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/ui/theme.dart';
@@ -21,6 +22,9 @@ void main() {
         ),
         ChangeNotifierProvider.value(
           value: ProductsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: BestSellerProductsProvider(),
         ),
       ],
       child: MyApp(),
