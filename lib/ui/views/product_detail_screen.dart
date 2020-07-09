@@ -1,11 +1,10 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/model/product_model.dart';
 import 'package:flutter_ecommerce/ui/shared/button/button_primary.dart';
 import 'package:flutter_ecommerce/ui/shared/button/button_secondary.dart';
 import 'package:flutter_ecommerce/ui/shared/wrapper/key_value_wrap.dart';
+import 'package:flutter_ecommerce/ui/widgets/product_top_content.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
-import 'package:flutter_ecommerce/utils/helper.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const route_name = "ProductDetailScreen";
@@ -51,126 +50,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: K.size.bodyHorizontalPadding,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Container(
-                              width: double.infinity,
-                              child: CarouselSlider(
-                                options: CarouselOptions(
-                                  disableCenter: true,
-                                  enableInfiniteScroll: false,
-                                  viewportFraction: 1.0,
-                                  aspectRatio: 3 / 2,
-                                ),
-                                items: data.imageDetail
-                                    .asMap()
-                                    .map(
-                                      (ind, item) => MapEntry(
-                                        ind,
-                                        Container(
-                                          margin: EdgeInsets.only(right: 10),
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Image.network(
-                                                item,
-                                                width: double.infinity,
-                                                height: double.infinity,
-                                                fit: BoxFit.cover,
-                                              ),
-                                              Positioned(
-                                                bottom: 10.0,
-                                                left: 10.0,
-                                                child: Container(
-                                                  width: 40,
-                                                  height: 20,
-                                                  color: Colors.grey,
-                                                  child: Center(
-                                                    child: Text(
-                                                      "${ind + 1} / ${data.imageDetail.length}",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 10,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                    .values
-                                    .toList(),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: K.size.contentBottomPadding,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  formatNumberToCurrency(
-                                    data.price.toDouble(),
-                                  ),
-                                  style: Theme.of(context).textTheme.headline2,
-                                ),
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: K.size.contentBottomPadding,
-                            child: Text(
-                              data.name,
-                            ),
-                          ),
-                          Padding(
-                            padding: K.size.contentBottomPadding,
-                            child: Text(
-                              "Terjual ${data.soldCount}",
-                              style: Theme.of(context).textTheme.caption,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    ProductDetailTopContent(data: data),
                     Divider(
                       thickness: 5,
                     ),
-                    Padding(
-                      padding: K.size.bodyHorizontalPadding,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Infomasi produk",
-                            style: Theme.of(context).textTheme.headline2,
-                          ),
-                          KeyValueView(
-                            label: "Berat",
-                            value: data.weight,
-                          ),
-                          KeyValueView(
-                            label: "Kondisi",
-                            value: data.condition,
-                          ),
-                          KeyValueView(
-                            label: "Kategori",
-                            value: data.category,
-                          ),
-                        ],
-                      ),
-                    ),
+                    ProductInformationContent(data: data),
                     Divider(
                       thickness: 5,
                     ),
@@ -193,34 +77,84 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
               ),
             ),
-            Card(
-              elevation: 2,
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: PrimaryButton(
-                        label: "Beli Langsung",
-                        onTap: () {
-                          print("Beli langsung");
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: SecondaryButton(
-                        label: "+ Keranjang",
-                        onTap: () {
-                          print("Beli keranjang");
-                        },
-                      ),
-                    )
-                  ],
-                ),
+            ProductDetailActionCard()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProductInformationContent extends StatelessWidget {
+  const ProductInformationContent({
+    Key key,
+    @required this.data,
+  }) : super(key: key);
+
+  final Product data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: K.size.bodyHorizontalPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Infomasi produk",
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          KeyValueView(
+            label: "Berat",
+            value: data.weight,
+          ),
+          KeyValueView(
+            label: "Kondisi",
+            value: data.condition,
+          ),
+          KeyValueView(
+            label: "Kategori",
+            value: data.category,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class ProductDetailActionCard extends StatelessWidget {
+  const ProductDetailActionCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      child: Container(
+        height: 50,
+        width: double.infinity,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: PrimaryButton(
+                label: "Beli Langsung",
+                onTap: () {
+                  print("Beli langsung");
+                },
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: SecondaryButton(
+                label: "+ Keranjang",
+                onTap: () {
+                  print("Beli keranjang");
+                },
               ),
             )
           ],

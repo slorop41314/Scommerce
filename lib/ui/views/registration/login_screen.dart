@@ -3,6 +3,7 @@ import 'package:flutter_ecommerce/ui/shared/input/input.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
 import 'package:flutter_ecommerce/ui/views/registration/register_screen.dart';
 import 'package:flutter_ecommerce/utils/constant.dart';
+import 'package:flutter_ecommerce/utils/image_path.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route_name = "LoginScreen";
@@ -50,12 +51,10 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SizedBox(
+                Image.asset(
+                  imgLogoPath,
                   width: 120,
                   height: 120,
-                  child: Center(
-                    child: Text("Your logo here"),
-                  ),
                 ),
                 Text(
                   "Welcome Back",

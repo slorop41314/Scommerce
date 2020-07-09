@@ -40,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: K.size.bodyPadding,
+          padding: K.size.contentPadding,
           child: Consumer<SearchProvider>(
             builder: (ctx, productProvider, _) {
               var size = MediaQuery.of(context).size;
@@ -52,26 +52,34 @@ class _SearchScreenState extends State<SearchScreen> {
                   Padding(
                     padding: K.size.contentPadding,
                     child: Text(
-                      "Showing result",
+                      productProvider.data.length > 0
+                          ? "Showing ${productProvider.data.length} result"
+                          : "No result",
                     ),
                   ),
-                  Expanded(
-                    child: GridView.builder(
-                      itemCount: productProvider.data.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: itemWidth / itemHeight,
-                      ),
-                      itemBuilder: (context, index) {
-                        // Product product = productProvider.data[index];
-                        Product product = productProvider.data[index];
-                        return GridProductCard(
-                          product: product,
-                        );
-                      },
-                    ),
-                  ),
+                  productProvider.loading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ))
+                      : Expanded(
+                          child: GridView.builder(
+                            itemCount: productProvider.data.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: itemWidth / itemHeight,
+                            ),
+                            itemBuilder: (context, index) {
+                              // Product product = productProvider.data[index];
+                              Product product = productProvider.data[index];
+                              return GridProductCard(
+                                product: product,
+                              );
+                            },
+                          ),
+                        ),
                 ],
               );
             },

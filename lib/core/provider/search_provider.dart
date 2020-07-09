@@ -23,7 +23,6 @@ class SearchProvider with ChangeNotifier {
   void fetchData(String keyword) async {
     _loading = true;
     notifyListeners();
-    _error = false;
     _data = await _productService.searchProductsByKeyword(keyword);
     _loading = false;
     notifyListeners();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
 import 'package:flutter_ecommerce/ui/views/bottom_tab.dart';
 import 'package:flutter_ecommerce/ui/views/registration/login_screen.dart';
+import 'package:flutter_ecommerce/utils/image_path.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -29,7 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text("Splash Screen"),
+          child: Image.asset(
+            imgLogoPath,
+            height: 150,
+            width: 150,
+          ),
         ),
       ),
     );
