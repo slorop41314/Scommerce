@@ -23,7 +23,7 @@ class HomeHeader extends StatelessWidget {
                 ? "Loading"
                 : userProvider.error
                     ? "Error get user"
-                    : userProvider.userData.fullname,
+                    : userProvider.data.fullname,
             style: Theme.of(context).textTheme.headline1,
           ),
         ),

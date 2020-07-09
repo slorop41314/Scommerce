@@ -8,7 +8,7 @@ class UserProvider with ChangeNotifier {
   bool _error = false;
   bool _loading = true;
 
-  User get userData {
+  User get data {
     return _userData;
   }
 

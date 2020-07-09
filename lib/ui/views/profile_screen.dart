@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const route_name = "ProfileScreen";
@@ -41,6 +43,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Consumer<UserProvider>(
+                builder: (ctx, userProvider, _) => userProvider.loading
+                    ? Text("Loading...")
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                userProvider.data.fullname,
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                              Icon(
+                                Icons.edit,
+                              ),
+                            ],
+                          ),
+                          Text(userProvider.data.phoneNumber),
+                          Text(userProvider.data.email),
+                        ],
+                      ),
+              ),
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount: actionsList.length,

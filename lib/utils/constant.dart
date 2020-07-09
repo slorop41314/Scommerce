@@ -21,3 +21,5 @@ class CustomSizes {
   double groupMargin = 20;
   double wideGroupGap = 40;
 }
+
+EdgeInsets kMetricsBodyPadding = EdgeInsets.all(20);
