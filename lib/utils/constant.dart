@@ -13,7 +13,9 @@ Color kColorPrimary = Colors.lightBlue;
 
 class CustomSizes {
   final bodyPadding = EdgeInsets.all(20);
+  final bodyHorizontalPadding = EdgeInsets.symmetric(horizontal: 20);
   final contentPadding = EdgeInsets.all(10);
+  final contentBottomPadding = EdgeInsets.only(bottom: 5);
   final cardProductPadding = EdgeInsets.all(5);
   double contentGap = 10;
   double groupMargin = 20;

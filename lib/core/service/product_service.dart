@@ -12,7 +12,7 @@ class ProductService {
         .collection(DBCollection.productCollection)
         .getDocuments();
     for (var product in querySnapshot.documents) {
-      var prod = Product.fromJson(product.data);
+      var prod = Product.fromJson(product.data, product.documentID);
       productsData.add(prod);
     }
     return productsData;
@@ -26,7 +26,7 @@ class ProductService {
         .limit(5)
         .getDocuments();
     for (var product in querySnapshot.documents) {
-      var prod = Product.fromJson(product.data);
+      var prod = Product.fromJson(product.data, product.documentID);
       productsData.add(prod);
     }
     return productsData;
@@ -41,7 +41,7 @@ class ProductService {
         .where("name", isLessThanOrEqualTo: keyword + "z")
         .getDocuments();
     for (var product in querySnapshot.documents) {
-      var prod = Product.fromJson(product.data);
+      var prod = Product.fromJson(product.data, product.documentID);
       productsData.add(prod);
     }
     return productsData;
