@@ -62,8 +62,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   }),
             ),
-            SizedBox(
+            Container(
               width: double.infinity,
+              margin: EdgeInsets.symmetric(vertical: 10),
               child: OutlineButton(
                 borderSide: BorderSide(
                   color: Colors.red,

@@ -31,4 +31,16 @@ class ProductService {
     }
     return productsData;
   }
+
+  Future<List<Product>> searchProductsByKeyword(String keyword) async {
+    List<Product> productsData = [];
+    QuerySnapshot querySnapshot = await _firestore
+        .collection(DBCollection.productCollection)
+        .getDocuments();
+    for (var product in querySnapshot.documents) {
+      var prod = Product.fromJson(product.data);
+      productsData.add(prod);
+    }
+    return productsData;
+  }
 }

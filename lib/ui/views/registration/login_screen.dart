@@ -137,7 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: K.size.groupMargin,
                     ),
                     RaisedButton.icon(
-                      onPressed: _onTapLoginWithGoogle,
+                      onPressed: () {},
+                      // _onTapLoginWithGoogle,
                       icon: Icon(
                         Icons.mail,
                       ),

@@ -28,6 +28,11 @@ ThemeData appTheme() {
         fontWeight: FontWeight.w800,
         color: Colors.black,
       ),
+      headline2: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: Colors.black,
+      ),
     ),
     dividerTheme: DividerThemeData(
       color: Colors.grey[100],
