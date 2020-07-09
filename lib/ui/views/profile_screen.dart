@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/core/service/auth_service.dart';
+import 'package:flutter_ecommerce/ui/views/edit_profile_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -42,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.all(20),
@@ -58,8 +60,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 userProvider.data.fullname,
                                 style: Theme.of(context).textTheme.headline1,
                               ),
-                              Icon(
-                                Icons.edit,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    EditProfileScreen.route_name,
+                                    arguments: {"data": userProvider.data},
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                ),
                               ),
                             ],
                           ),

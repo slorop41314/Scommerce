@@ -6,6 +6,7 @@ import 'package:flutter_ecommerce/core/provider/user_provider.dart';
 import 'package:flutter_ecommerce/ui/theme.dart';
 import 'package:flutter_ecommerce/ui/views/bottom_tab.dart';
 import 'package:flutter_ecommerce/ui/views/cart_screen.dart';
+import 'package:flutter_ecommerce/ui/views/edit_profile_screen.dart';
 import 'package:flutter_ecommerce/ui/views/home/home_screen.dart';
 import 'package:flutter_ecommerce/ui/views/product_detail_screen.dart';
 import 'package:flutter_ecommerce/ui/views/registration/login_screen.dart';
@@ -58,6 +59,8 @@ class MyApp extends StatelessWidget {
         CartScreen.route_name: (context) => CartScreen(),
         SearchScreen.route_name: (context) => SearchScreen(),
         ProductDetailScreen.route_name: (context) => ProductDetailScreen(),
+
+        EditProfileScreen.route_name: (context) => EditProfileScreen(),
       },
     );
   }
