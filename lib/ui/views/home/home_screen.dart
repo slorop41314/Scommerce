@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
                         childAspectRatio: itemWidth / itemHeight,
                       ),
                       itemBuilder: (context, index) {

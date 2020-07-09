@@ -36,6 +36,9 @@ class ProductService {
     List<Product> productsData = [];
     QuerySnapshot querySnapshot = await _firestore
         .collection(DBCollection.productCollection)
+        .orderBy("name")
+        .where("name", isGreaterThanOrEqualTo: keyword)
+        .where("name", isLessThanOrEqualTo: keyword + "z")
         .getDocuments();
     for (var product in querySnapshot.documents) {
       var prod = Product.fromJson(product.data);

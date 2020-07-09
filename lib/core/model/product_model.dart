@@ -9,6 +9,7 @@ class Product {
   String weight;
   String condition;
   String category;
+  List<dynamic> imageDetail;
 
   Product({
     @required this.name,
@@ -19,6 +20,7 @@ class Product {
     @required this.weight,
     @required this.condition,
     @required this.category,
+    @required this.imageDetail,
   });
 
   Product.fromJson(Map<String, dynamic> parsedJSON)
@@ -29,5 +31,6 @@ class Product {
         soldCount = parsedJSON["soldCount"],
         weight = parsedJSON["weight"],
         condition = parsedJSON["condition"],
-        category = parsedJSON["category"];
+        category = parsedJSON["category"],
+        imageDetail = parsedJSON["imageDetail"];
 }

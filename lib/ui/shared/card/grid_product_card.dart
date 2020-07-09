@@ -15,6 +15,7 @@ class GridProductCard extends StatelessWidget {
     return Container(
       height: double.infinity,
       child: Card(
+        elevation: 3,
         child: Container(
           padding: K.size.cardProductPadding,
           child: Column(
